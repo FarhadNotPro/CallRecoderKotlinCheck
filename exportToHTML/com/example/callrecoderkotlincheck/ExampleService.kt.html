@@ -1,0 +1,67 @@
+<html>
+<head>
+<title>ExampleService.kt</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #0033b3;}
+.s1 { color: #080808;}
+.s2 { color: #067d17;}
+.s3 { color: #1750eb;}
+.s4 { color: #8c8c8c; font-style: italic;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+ExampleService.kt</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com.example.callrecoderkotlincheck</span>
+
+<span class="s1">import android.app.PendingIntent</span>
+<span class="s1">import android.app.Service</span>
+<span class="s1">import android.content.Intent</span>
+<span class="s1">import android.os.IBinder</span>
+<span class="s1">import android.util.Log</span>
+<span class="s1">import androidx.core.app.NotificationCompat</span>
+
+
+<span class="s0">class </span><span class="s1">ExampleService : Service() {</span>
+    <span class="s0">val </span><span class="s1">CHANNEL_ID = </span><span class="s2">&quot;exampleServiceChannel&quot;</span>
+    <span class="s1">override </span><span class="s0">fun </span><span class="s1">onCreate() {</span>
+        <span class="s0">super</span><span class="s1">.onCreate()</span>
+        <span class="s1">Log.d(</span><span class="s2">&quot;ServiceClass&quot;</span><span class="s1">, </span><span class="s2">&quot;OnCreate&quot;</span><span class="s1">)</span>
+    <span class="s1">}</span>
+
+    <span class="s1">override </span><span class="s0">fun </span><span class="s1">onStartCommand(intent: Intent, flags: Int, startId: Int): Int {</span>
+        <span class="s1">Log.d(</span><span class="s2">&quot;ServiceClass&quot;</span><span class="s1">, </span><span class="s2">&quot;OnStart&quot;</span><span class="s1">)</span>
+        <span class="s0">val </span><span class="s1">input = intent.getStringExtra(</span><span class="s2">&quot;inputExtra&quot;</span><span class="s1">)</span>
+        <span class="s0">val </span><span class="s1">notificationIntent = Intent(</span><span class="s0">this</span><span class="s1">, MainActivity::</span><span class="s0">class</span><span class="s1">.java)</span>
+        <span class="s0">val </span><span class="s1">pendingIntent = PendingIntent.getActivity(</span>
+            <span class="s0">this</span><span class="s1">,</span>
+            <span class="s3">0</span><span class="s1">, notificationIntent, </span><span class="s3">0</span>
+        <span class="s1">)</span>
+        <span class="s0">val </span><span class="s1">notification = NotificationCompat.Builder(</span><span class="s0">this</span><span class="s1">, CHANNEL_ID)</span>
+            <span class="s1">.setContentTitle(</span><span class="s2">&quot;Example Service&quot;</span><span class="s1">)</span>
+            <span class="s1">.setContentText(input)</span>
+            <span class="s1">.setSmallIcon(R.drawable.ic_android)</span>
+            <span class="s1">.setContentIntent(pendingIntent)</span>
+            <span class="s1">.build()</span>
+        <span class="s1">startForeground(</span><span class="s3">1</span><span class="s1">, notification)</span>
+        <span class="s4">//do heavy work on a background thread</span>
+        <span class="s4">//stopSelf();</span>
+        <span class="s0">return </span><span class="s1">START_NOT_STICKY</span>
+    <span class="s1">}</span>
+
+    <span class="s1">override </span><span class="s0">fun </span><span class="s1">onDestroy() {</span>
+        <span class="s0">super</span><span class="s1">.onDestroy()</span>
+        <span class="s1">Log.d(</span><span class="s2">&quot;ServiceClass&quot;</span><span class="s1">, </span><span class="s2">&quot;OnDestroy&quot;</span><span class="s1">)</span>
+    <span class="s1">}</span>
+
+    <span class="s1">override </span><span class="s0">fun </span><span class="s1">onBind(intent: Intent?): IBinder? {</span>
+        <span class="s1">Log.d(</span><span class="s2">&quot;ServiceClass&quot;</span><span class="s1">, </span><span class="s2">&quot;OnBind&quot;</span><span class="s1">)</span>
+        <span class="s0">return null</span>
+    <span class="s1">}</span>
+<span class="s1">}</span></pre>
+</body>
+</html>

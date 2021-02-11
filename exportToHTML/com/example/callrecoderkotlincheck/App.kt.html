@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>App.kt</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #0033b3;}
+.s1 { color: #080808;}
+.s2 { color: #067d17;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+App.kt</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com.example.callrecoderkotlincheck</span>
+
+<span class="s1">import android.app.Application</span>
+<span class="s1">import android.app.NotificationChannel</span>
+<span class="s1">import android.app.NotificationManager</span>
+<span class="s1">import android.os.Build</span>
+
+<span class="s0">class </span><span class="s1">App : Application() {</span>
+    <span class="s0">val </span><span class="s1">CHANNEL_ID = </span><span class="s2">&quot;exampleServiceChannel&quot;</span>
+
+    <span class="s1">override </span><span class="s0">fun </span><span class="s1">onCreate() {</span>
+        <span class="s0">super</span><span class="s1">.onCreate()</span>
+        <span class="s1">createNotificationChannel()</span>
+    <span class="s1">}</span>
+
+    <span class="s1">open </span><span class="s0">fun </span><span class="s1">createNotificationChannel() {</span>
+        <span class="s0">if </span><span class="s1">(Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.O) {</span>
+            <span class="s0">val </span><span class="s1">serviceChannel = NotificationChannel(</span>
+                <span class="s1">CHANNEL_ID,</span>
+                <span class="s2">&quot;Example Service Channel&quot;</span><span class="s1">,</span>
+                <span class="s1">NotificationManager.IMPORTANCE_DEFAULT</span>
+            <span class="s1">)</span>
+            <span class="s0">val </span><span class="s1">manager: NotificationManager = getSystemService&lt;NotificationManager&gt;(</span>
+                <span class="s1">NotificationManager::</span><span class="s0">class</span><span class="s1">.java</span>
+            <span class="s1">)</span>
+            <span class="s1">manager.createNotificationChannel(serviceChannel)</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+<span class="s1">}</span></pre>
+</body>
+</html>

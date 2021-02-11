@@ -1,0 +1,59 @@
+<html>
+<head>
+<title>MainActivity.kt</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #0033b3;}
+.s1 { color: #080808;}
+.s2 { color: #1750eb;}
+.s3 { color: #067d17;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+MainActivity.kt</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com.example.callrecoderkotlincheck</span>
+
+<span class="s1">import android.Manifest</span>
+<span class="s1">import android.content.pm.PackageManager</span>
+<span class="s1">import android.os.Build</span>
+<span class="s1">import android.os.Bundle</span>
+<span class="s1">import android.util.Log</span>
+<span class="s1">import android.widget.Toast</span>
+<span class="s1">import androidx.appcompat.app.AppCompatActivity</span>
+
+<span class="s0">class </span><span class="s1">MainActivity : AppCompatActivity() {</span>
+    <span class="s1">override </span><span class="s0">fun </span><span class="s1">onCreate(savedInstanceState: Bundle?) {</span>
+        <span class="s0">super</span><span class="s1">.onCreate(savedInstanceState)</span>
+        <span class="s1">setContentView(R.layout.activity_main)</span>
+
+        <span class="s0">if </span><span class="s1">(Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.M &amp;&amp; checkSelfPermission(Manifest.permission.READ_PHONE_STATE)</span>
+            <span class="s1">!= PackageManager.PERMISSION_GRANTED</span>
+        <span class="s1">) {</span>
+            <span class="s1">requestPermissions(arrayOf(Manifest.permission.READ_PHONE_STATE), </span><span class="s2">1000</span><span class="s1">)</span>
+        <span class="s1">}</span>
+        <span class="s1">Toast.makeText(</span><span class="s0">this</span><span class="s1">, </span><span class="s3">&quot;Permission Granted&quot;</span><span class="s1">, Toast.LENGTH_LONG).show()</span>
+        <span class="s1">Log.d(</span><span class="s3">&quot;Mmmm&quot;</span><span class="s1">, </span><span class="s3">&quot;activity Opened&quot;</span><span class="s1">)</span>
+    <span class="s1">}</span>
+
+    <span class="s1">override </span><span class="s0">fun </span><span class="s1">onRequestPermissionsResult(</span>
+        <span class="s1">requestCode: Int,</span>
+        <span class="s1">permissions: Array&lt;String?&gt;,</span>
+        <span class="s1">grantResults: IntArray</span>
+    <span class="s1">) {</span>
+        <span class="s0">super</span><span class="s1">.onRequestPermissionsResult(requestCode, permissions, grantResults)</span>
+        <span class="s0">if </span><span class="s1">(requestCode == </span><span class="s2">1000</span><span class="s1">) {</span>
+            <span class="s0">if </span><span class="s1">(grantResults[</span><span class="s2">0</span><span class="s1">] == PackageManager.PERMISSION_GRANTED) {</span>
+                <span class="s1">Toast.makeText(</span><span class="s0">this</span><span class="s1">, </span><span class="s3">&quot;Permission Granted&quot;</span><span class="s1">, Toast.LENGTH_LONG).show()</span>
+            <span class="s1">} </span><span class="s0">else </span><span class="s1">{</span>
+                <span class="s1">Toast.makeText(</span><span class="s0">this</span><span class="s1">, </span><span class="s3">&quot;Permission Not Granted&quot;</span><span class="s1">, Toast.LENGTH_LONG).show()</span>
+                <span class="s1">finish()</span>
+            <span class="s1">}</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+<span class="s1">}</span></pre>
+</body>
+</html>
