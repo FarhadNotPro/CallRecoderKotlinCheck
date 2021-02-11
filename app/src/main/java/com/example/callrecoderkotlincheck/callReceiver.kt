@@ -13,7 +13,6 @@ class callReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         if (intent.getStringExtra(TelephonyManager.EXTRA_STATE) == TelephonyManager.EXTRA_STATE_OFFHOOK) {
             showToast(context, "Call Started...")
-            val input = "This is Service Started from BCReceiver"
             val serviceIntent = Intent(context, ExampleService::class.java)
             serviceIntent.putExtra("inputExtra", "Foreground Service is running...")
             ContextCompat.startForegroundService(context, serviceIntent)

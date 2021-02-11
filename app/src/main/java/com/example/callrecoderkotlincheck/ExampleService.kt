@@ -15,17 +15,7 @@ import androidx.core.content.ContextCompat
 
 class ExampleService : Service() {
     private val CHANNEL_ID = "ForegroundService Kotlin"
-    companion object {
-        fun startService(context: Context, message: String) {
-            val startIntent = Intent(context, ExampleService::class.java)
-            startIntent.putExtra("inputExtra", message)
-            ContextCompat.startForegroundService(context, startIntent)
-        }
-        fun stopService(context: Context) {
-            val stopIntent = Intent(context, ExampleService::class.java)
-            context.stopService(stopIntent)
-        }
-    }
+
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         //do heavy work on a background thread
         val input = intent?.getStringExtra("inputExtra")
